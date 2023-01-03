@@ -1,0 +1,2153 @@
+Git 
+
+It is version control tool 
+it is also called SCM (source code management) tools
+
+2 types of version controlling
+
+1.Centralized Version Controlling - contain 1 repository
+2.Distributed Version Controlling - contain 2 repository
+
+project file -> staging area -> move local repository
+
+Types of Git files
+
+Untracked files - default develop files 
+Staged files - 
+commited file -
+
+git init
+git status
+git config --global user.name "yogesh"
+git config --global user.email "yogeshacy@outlook.com"
+git config --global --list
+
+file move to staging area from untracked
+git add one.txt
+git add .
+
+file move staging area to loal repository 
+git commit -m "first commit"
+
+View the list of commit
+git log 
+git log --oneline
+
+latest commit is also called as head commit
+
+Branching
+
+developers created the branch based on the different functionality
+default branch is master
+
+git branch test --> create the new branch (test)
+git branch ----> view the list of branch
+git checkout test --> change into test branch
+
+before merging master branch shows only master commit logs
+child brach shows child commit & master commit logs	
+while merging create new commit
+
+Merge
+
+leanear order merged
+	
+git checkout master
+git merge test
+
+.gitignore
+
+vi .gitignore
+*.class
+:wq
+
+Rebase 
+
+it is fast forward merge
+its added the top of the merge
+add the latest version of master branch
+
+git checkout test
+
+git rebase master
+
+git checkout master
+
+git merge test
+
+git log
+
+Rearange 
+
+change the commit order 
+can not change the order of first commit
+
+git rebase -i HEAD~4
+
+edit the order 
+save it
+git log --oneline
+
+Squash
+
+remove the any commit
+can not squash the order of first commit
+
+git rebase -i HEAD~4
+
+replace pick to squash
+save it
+
+
+cherry pick
+
+selctively pickup the child commit to parent (master)
+
+git cherry-pick <child-commit-id> <child-commit-id> 
+
+
+git checkout test
+
+get the required child commmit 
+
+git checkout master
+
+git cherry-pick <child-commit-id> <child-commit-id> 
+
+its fast forward merge
+
+Amend
+
+it's modification of comitted existing file
+git commit --amend -m "a"
+
+file conflict
+it's override the same file in different branch 
+
+delete branch
+
+git branch
+
+git branch -d test
+
+previous version of source code 
+
+git reset --hard  <specific commit-id>
+
+github (Repository)
+
+git remote add origin https://github.com/yogeshacy/test_repo.git
+git branch -M main
+git push -u origin master
+
+Maven
+
+Maven is build tool 
+it can builf artifact
+
+artifact deploy to server 
+
+1.maven
+2.ms build
+3.py build
+
+vulnerability
+
+maven to avoid the issues and provide the secure API 
+search.maven.org
+
+Maven Installation
+
+pre request 
+install java 8 and above
+set environemnt variable
+
+JAVA_HOME
+C:\Program Files\Java\jdk1.8.0_281
+PATH 
+C:\Program Files\Java\jdk1.8.0_281\bin
+
+https://maven.apache.org/download.cgi --> downnload the maven (Binary zip archive)
+
+unzip the zip
+
+M2_HOME 
+C:\apache-maven-3.8.4
+PATH
+C:\apache-maven-3.8.4\bin
+
+
+mvn archetype:generate
+
+1888 --> sample mvn project 
+
+group id --> com.flipkart
+artifact id --> webflipkart
+
+main --> actual code
+test --> unit testing code 
+ 
+POM --> Project Object Model
+
+It's contain API information 
+
+to required API download from global repository to local repository
+
+https://search.maven.org --> getting required dependencey fetching here 
+
+https://mvnrepository.com --> 
+
+C:\Users\YOGESH\webacy
+
+open gitbash
+
+git init
+git status
+git add
+git commit -m "first commit message"
+git status
+git log
+
+C:\Users\YOGESH\webacy> mvn compile
+C:\Users\YOGESH\webacy> mvn test 
+C:\Users\YOGESH\webacy> mvn package
+
+Jenkins
+
+It is self contained , open source automation server which can be used automate all task related to building, testing and delivery sctivities 
+It's continuous Integration and continuous delivery tools
+
+pre requiest JRE 
+
+stages in CI-CD 5 steps 
+1. continuous download
+2. continuous build
+3. continuous deployment
+4. continuous testing
+5. continuous delivery
+
+1-4 --> continuous integration
+5 --> continuous delivery
+
+3 Instances
+DEV
+QA
+PROD
+
+1. continuous download 
+
+devloper upload the source code to github 
+to download the source code
+source code download from github repository to dev instance 
+
+2. continuous build
+source code generate the artifact(build) 
+help of maven
+
+3. continuous deployment
+deploying artifact(build) dev to QA 
+
+4. continuous testing
+running the test script to veify the deployed applicatiion
+if pass the deployed applicatiion
+
+diff between 3 and 5
+
+deplyed in the QA --> deployment 
+deployed in Prod --> delivery 
+
+5. continuous delivery
+after complet the QA (if testing completed success)
+dev artifact deployed in Prod
+
+sudo apt-get update 
+
+ sudo apt update
+ sudo apt install openjdk-8-jdk -y
+ java -version
+ sudo apt-get install -y git maven
+ git --version
+ mvn --version
+ wget https://get.jenkins.io/war-stable/2.332.2/jenkins.war
+ java -jar jenkins.war
+
+
+sudo apt install openjdk-jdk-8 -y
+sudo apt-get install -y git maven
+
+wget https://get.jenkins.io/war-stable/2.332.2/jenkins.war
+
+
+java -jar jenkins-war -y 
+http://13.233.157.59:8080
+
+ff5e4571307244c1b07061e90e3eb70f
+
+QA
+
+sudo apt-get update
+sudo apt-get install -y tomcat9
+sudo apt-get install -y tomcat9-admin
+
+http://13.233.28.31:8080/
+
+http://172.31.9.151:8080/
+
+tomcat user creation
+
+cd /etc/tomcat9/
+sudo vim tomcat-users.xml
+
+<user username="yogesh" password="yogesh" roles="manager-script,manager-status,manager-gui"/>
+:wq!
+
+sudo service tomcat9 restart
+
+Prod
+
+sudo apt-get update
+sudo apt-get install -y tomcat9
+sudo apt-get install -y tomcat9-admin
+
+http://65.0.27.204:8080/
+
+tomcat user creation
+
+cd /etc/tomcat9/
+sudo vim tomcat-users.xml
+
+<user username="yogeshprod" password="yogeshprod" roles="manager-script,manager-status,manager-gui"/>
+:wq!
+
+sourcecode management 
+
+select --> git
+repository url
+https://github.com/sunildevops77/maven.git
+
+Build
+
+install deploy to container blugin
+
+invoke top level maven taget
+
+package
+
+post build excetion 
+
+Deploy war/ear to a container
+WAR/EAR files
+
+**/*.war
+
+context path
+qaenv
+
+Containers
+
+Tomcat 9.x Remote
+Credentials (yogesh, yogesh ) from QA env tomcat Credentials
+http://<QA private ip>: <port>
+http://172.31.9.151:8080/ (tomcat url path using private ip)
+
+build the job
+
+http://<QA public ip>: <port>/contect path
+http://13.233.28.31:8080/qaenv/
+
+4. continuous testing
+
+create job testing 
+sourcecode code management 
+https://github.com/sunildevops77/maven.git
+
+build
+
+choose execute shell
+
+put testing script
+java -jar testing.jar
+
+choose develpment job
+post build action
+choose build other project
+choose testing job
+
+save 
+
+http://172.31.10.60:8080
+
+
+jenkins user creation
+
+while creating user its like similar to admin user we can provide privilages 
+
+roles
+1.global role 
+2.item role/project role 
+
+add bugin --> role based authorization blugin
+
+magage blugin --> config global security --> role based starategy --> apply & save
+
+Roles --> 2 types 
+
+1.global role 
+2.item role/project role 
+
+magage jenkins --> manage and assign role --> mange role --> Global & item roles 
+
+magage jenkins --> manage and assign role --> assign role
+
+global role --> add role ->  employee ( to select the option)
+
+item role ( assign the patten )
+
+master slave confguration
+
+slave machine
+
+set password 
+
+sudo passwd ubuntu
+password --> ubuntu
+
+cd /etc/ssd
+ 
+sudo vi sshd_config
+ 
+change the password config --> yes
+
+re-start the ssh 
+
+sudo service ssh restart
+
+ mkdir workspace
+ cd workspace
+ sudo wget http://172.31.9.152:8080/jnlpJars/slave.jar  --> from jenkinds server private ip
+ chmod u+x slave.jar
+ 
+Master server
+
+paasword connection
+ssh ubuntu@172.31.7.83
+ssh-keygen
+
+ssh-copy-id ubuntu@172.31.7.83
+
+ssh ubuntu@172.31.7.83
+
+
+Jenkins UI
+
+manage jenkins --> manage nodes and clouds --> new nodes
+
+node name 
+permanent agent
+
+create 
+
+remote root dir
+/home/ubuntu/workspace/
+lable
+slave_lab
+
+launch agent via execution of command on the controller
+
+launch command 
+
+ssh ubuntu@172.31.7.83 java -jar slave.jar
+
+save
+
+pipiline jobs
+
+implementing the ci-cd form the level of code
+
+code created by groovy script, also called as jenkins filr 
+
+
+it can accept human intract input
+pipline script support complex realtime scenario 
+
+
+manage jenkins --> manage blugin --> available --> build publine --> install
+
+new item --> ""scripted pipline" --> pieline --> ok
+
+pipeline tab --> script --> pieline syntax (open tab automatically)
+
+stage 1 continious download
+
+allocate the node 
+
+select --> allocate node
+
+"build-in"
+
+select git -->
+
+paste the git url
+
+generate the code
+
+paste the pipeline script 
+
+build
+
+
+step 2 ---> continious build-in
+
+select sh script 
+
+mvn package
+
+generate the code 
+
+paste pipeline script --> build-in
+
+stage 3 ---> continious deployement 
+
+QA
+
+set password 
+
+sudo passwd ubuntu
+
+cd /etc/ssh
+ sudo vim sshd_config
+password authontication :yes  
+ :wq
+restart the service
+
+sudo service ssh restart 
+
+cd /var/lib
+
+sudo chmod -R o+w tomcat9/
+
+DEV
+
+ssh-keygen
+
+ssh-copy-id username@private id of qa
+ssh-copy-id ununtu@172.31.9.151
+ssh ununtu@172.31.9.151
+
+
+jenkins 
+
+select sh script 
+
+sh 'scp /home/ubuntu/.jenkins/workspace/ScriptPipeline/webapp/target/webapp.war ubuntu@172.31.9.151:/var/lib/tomcat9/webapps/qaenv.war'
+
+generate the code
+
+paste pipeline script --> build-in
+
+stage 4 --> continious tesing 
+
+snippet generater 
+
+sh script
+
+echo "test passed" 
+
+paste pipeline script --> build-in
+
+stage 5 ---> confguration	delivery
+
+prod
+
+set password 
+
+sudo passwd ubuntu
+
+cd /etc/ssh
+ sudo vim sshd_config
+password authontication :yes  
+ :wq
+restart the service
+
+sudo service ssh restart 
+
+cd /var/lib
+
+sudo chmod -R o+w tomcat9/
+
+DEV
+
+ssh-keygen
+
+ssh-copy-id ununtu@172.31.10.60
+ssh ununtu@172.31.10.60
+
+ssh-copy-id username@private id of prod
+ssh-copy-id ununtu@172.31.10.60
+ssh ununtu@172.31.10.60
+exit
+
+jenkins 
+
+select sh script 
+
+sh 'scp /home/ubuntu/.jenkins/workspace/ScriptPipeline/webapp/target/webapp.war ubuntu@172.31.28.16:/var/lib/tomcat9/webapps/prodenv.war'
+
+generate the code
+
+paste pipeline script --> build-in
+
+
+node('built-in') {
+    stage('Continuous Download') {
+          git 'https://github.com/sunildevops77/maven.git'
+    }
+	stage('Continuous Build') {
+         sh 'mvn package'
+    }
+	stage('continious build') {
+         sh 'mvn package '
+    }
+	stage('continious Deploymnet') {
+         sh 'scp /home/ubuntu/.jenkins/workspace/ScriptPipeline/webapp/target/webapp.war ubuntu@172.31.9.151:/var/lib/tomcat9/webapps/qaenv.war'
+    }
+	stage('continious Testing') {
+         sh 'echo "Tesing passed"'  
+    }
+	
+	stage('Continuous Delivery') {
+		 sh 'scp /home/ubuntu/.jenkins/workspace/ScriptPipeline/webapp/target/webapp.war ubuntu@172.31.28.16:/var/lib/tomcat9/webapps/prodenv.war'
+	}
+}
+
+Multi branch pipeline
+
+every branch contain specific code related to one functionality
+
+devloper create the multi branching
+
+evry banch havine own jenkins file
+excuted parallely
+
+step perform developers
+
+mkdir multibranch
+create mavan
+git clone https://github.com/sunildevops77/maven.git
+
+git init
+git status
+git add .
+git commit -m "a"
+git log
+
+git branching
+
+git branch loans
+
+
+git remote add origin https://github.com/sunildevops77/Jenkins_multiBranch777.git
+git push -u origin --all   ( as we want to push all branches )
+
+branch source
+add source
+
+jenkins
+create job
+multi branch pipeline
+
+add source
+build periodically
+
+email alert
+
+manage jenkins --> configure sysytem --> email notification --> 
+
+SMTP server : smtp.gmail.com
+
+advanced tab 
+select SMTP auhentication
+provide user name and password of email
+
+use ssl 
+
+SMTP port : 465 
+
+
+if you require test confguration by sending test mail
+
+select the job --> configure --> post build action --> send to email notification
+
+build periodically
+
+select the job --> configure --> build trigger --> build periodically 
+30 21 *  * *
+
+waiting for approval for delivery
+
+
+Docker 
+
+It is an contanierization tool
+
+virtualation --> h/w --> os (host os) --> vm ware (hyperwizer) --> os (guest os) (many os) --> appliction
+
+contanierization -->h/w --> os (host os ) --> docker (contanierization) --> applicatiion
+
+contanierization
+its an advance concept of virtualation 
+virtualation --> fixed h/w allocation
+contanierization --> no fixed h/w allocation
+
+docker -> implement high-level API provides Light weight contanierization tools
+contanier --> its an applicatiion running on docker 
+docker contanier enable rapit develpment 
+
+docker
+contanierization tool
+porability
+no downtime
+resoure sharing
+process isolation (depndency in os is removed)
+
+docker installation 
+
+https://get.docker.com/
+
+$ curl -fsSL https://get.docker.com -o get-docker.sh
+$ sh get-docker.sh
+$ docker --version
+
+Docker image 
+combination of binaries and libraries are necessary for one application
+
+Docker container 
+1.download the image
+2.run the image
+running the image is called container 
+
+Docker host
+Machine on which docker is installed, is called as docker host
+
+Docker client 
+Terminal used to run docker run command (git bash , putty)
+
+download image
+	
+docker pull image_name
+
+upload image
+
+docker push image_name
+
+List of image and container
+
+docker image ls
+docker container ls
+
+remove image and container
+docker rm container_name
+docker rmi image_name
+
+docker download
+
+all the images download from docker hub 
+hub.docker.com
+docker hub registery of images
+
+docker pull ubuntu 
+docker pull tomee
+docker pull jenkins/jenkins
+
+docker run 
+docker run --name c1 -p 7070:8080 tomee
+
+name of the container c1
+port mapping 7070
+
+stop the container
+
+docker stop c1 --> stop the container 
+docker rm -f c1 --> remove the container
+
+detached mode 
+docker run --name c1 -p 7070:8080 -d tomee
+
+-d --> run the image detached mode 
+
+docker run --name myjenkins -p 9090:8080 -d jenkins/jenkins
+
+docker run --name myubuntu -it ubuntu 
+
+-it -->interactive terminal 
+
+docker pull crate
+
+docker run --name mycratedb -p :-d crate
+
+docker pull crate
+
+docker pull mysql 
+
+docker run  --name mysqldb -d -e MYSQL_ROOT_PASSWORD=yogesh mysql:5
+docker run  --name mysqldb -p 3306:3306 -d -e MYSQL_ROOT_PASSWORD=yogesh mysql:5
+
+-e environement variable
+
+docker exec -it mysqldb bash
+mysql -u root -p 
+password *****
+
+multi container architecture using docker 
+
+this can be done in 2 ways 
+1 -- link
+2 docker-compose 
+
+1 --link option
+docker run --name c10 -it busybox
+
+busybox -- small linux os
+comming out of container
+exit  --> container stoped
+ctrl+p+q  --> container running backround
+
+-----------------------
+docker run --name c20 --link c10:c10-alias -it busybox
+
+c10-aliasis alias name 
+
+docker run --name mysite -p 5050:80 -d --link mysqldb:mysqldb-alias wordpress
+
+------------------------
+LAMP Architecture
+
+L - Linux
+A - Apache tomcat
+M - MySQL
+P- PHP
+
+remove all docker container
+docker rm -f $(docker ps -aq)
+
+docker container ls
+
+docker run  --name mysqldb -p 3306:3306 -d -e MYSQL_ROOT_PASSWORD=yogesh mysql:5
+
+docker run  --name apache -p 6060:8080 -d   --link mysqldb:mysqldb-alias tomee
+
+docker inspect apache 
+
+docker run  --name php -d  --link apache:tomcat  --link mysqldb:mysqldb-alias php
+
+----------------------
+
+docker run --name devserver -p 9090:8080 -d jenkins/jenkins
+
+docker run  --name qaserver -p 8080:8080 -d   --link devserver:jenkins tomee
+
+docker run  --name prodserver -p 8080:8080 -d   --link devserver:jenkins tomee
+
+----------------
+
+docker run  --name hub -d -p 4444:4444 selenium/hub
+
+docker run --name chrome  -d -p 5901:5900  --link hub:selenium   selenium/node-chrome-debug
+
+docker run  --name firefox -d -p 5902:5900 --link hub:selenium  selenium/node-firefox-debug
+
+-------------------
+
+
+docker run --name myjenkins -p 9090:8080 -d jenkins/jenkins
+
+
+docker exec -it myjenkins bash 
+
+getting admin password
+
+cat /var/jenkins_home/secrets/initialAdminPassword
+
+docker compose 
+
+yamal validator
+
+http://www.yamllint.com/
+
+docker-compose installation
+
+https://docs.docker.com/compose/install/
+
+choose linux 
+
+ DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
+ mkdir -p $DOCKER_CONFIG/cli-plugins
+ curl -SL https://github.com/docker/compose/releases/download/v2.4.1/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose
+ 
+ sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+ 
+ chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
+
+ sudo chmod +x /usr/local/lib/docker/cli-plugins/docker-compose
+ 
+ sudo chmod +x /usr/local/bin/docker-compose
+
+ docker compose version
+ 
+ 
+vim docker-compose.yml      ( Name of the file should be docker-compose.yml)
+
+---
+version: '3'
+
+services:
+ mydb:
+  image: mysql:5
+  environment:
+   MYSQL_ROOT_PASSWORD: sunilsunil
+
+ mysite:
+  image: wordpress
+  ports:
+   - 5050:80
+  links:
+   - mydb:mysql
+...
+	
+docker-compose up -d
+docker-compose stop
+
+remove all docker container
+docker rm -f $(docker ps -aq)
+
+-----------------
+
+version: '3'
+
+services:
+ mydb:
+  image: mysql:5
+  environment:
+   MYSQL_ROOT_PASSWORD: sunilsunil
+
+ apache:
+  image: tomee
+  ports:
+   - 6060:8080
+  links:
+   - mydb:mysql
+
+
+ php:
+  image: php
+  links:
+   - mydb:mysql
+   - apache:tomcat
+   
+
+docker-compose up -d
+
+docker container ls
+
+docker ps -a --> to all container 
+
+
+docker rmi images_name
+docker system prune -a 
+
+docker volume
+ 
+docker container are ephemeral(temperary)
+
+when a container is delete all its data will lost 
+to preserve the data, even after deleting the container, we use volumes
+
+docker volumes are two types
+simple docker volume  --> it is secific one containe volume
+docker volume containes (shared volume) --> it can shared multiple volumes 
+
+-----
+
+simple volume 
+
+mkdir /data
+
+docker run --name c1 -it -v /data centos ( v option is uses to attach the volume)
+
+docker inspect c1  --> to get more information about container
+
+docker data mount path 
+/var/lib/docker/
+
+/var/lib/docker/volumes/3395241a55eb22de0959cca921bc8e36de2f0e291a8649809e09a3c9c2be05b7/_data
+
+remove the contaner
+docker rm -f c1
+
+removee the images
+docker rmi 5d0da3dc9764
+
+-------------------
+
+shared volume
+
+it is reusable volumes 
+
+docker run --name c1 -it -v /data centos 
+
+cd data
+touch f1 f2 
+
+ctrl+p ctrl+q come out of running docker container , continer running backround
+
+docker run --name c2 -it --volumes-from c1 centos 
+
+cd data
+touch f3 f4
+
+ctrl+p ctrl+q come out of running docker container , continer running backround
+
+docker run --name c3 -it --volumes-from c2 centos 
+
+cd data
+
+touch f5 f6
+
+ctrl+p ctrl+q come out of running docker container , continer running backround
+docker attach c1 --> move to running container 
+exit
+
+docker inspect c1
+
+docker delete the container 
+
+docker rm -f c1 
+
+cd /var/lib/docker/volumes/955827986ed63683eb02f33c0633e4a2873aebdcf5528fb4a12a9fce9c2d0de8/_data
+
+creating customized image - 2 ways
+
+1.docker comiit command
+2.using docker file
+
+1.docker comiit command
+
+docker run --name c11 -it --volumes-from c2 ubuntu
+
+apt-get update
+apt-get install git
+
+to save the contant
+docker commit c11 myubunt
+ 
+docke shared volume
+
+docker volume availabe one container shared with other container 
+if container deleted data available docker host
+
+mkdir /data
+
+docker run --name c1 -it -v /data centos
+
+cd /data
+
+touch file1 file2
+
+ctrl+p ctrl+q (back to termilal with out stop the container )
+
+start aonther container
+
+docker run --name c2 -it --volumes-from c1 centos
+
+cd /data
+
+ls
+
+touch file3 file4
+
+ctrl+p ctrl+q (back to termilal with out stop the container )
+
+
+start aonther container
+
+docker run --name c3 -it --volumes-from c2 centos
+
+cd /data
+
+ls
+
+touch file5 file6
+
+ctrl+p ctrl+q (back to termilal with out stop the container )
+
+docker attach c1
+
+docker inspect c1
+
+docker rm -f c1 c2 c3 
+
+create customze image
+
+we are create our own image 
+
+two ways to create customized image 
+
+1.using docker commit command
+using docker file
+
+docker run --name c11 -it ubuntu
+apt-get update
+apt-get install git
+
+git --version
+
+exit
+
+docker commit
+
+docker commit c11 myubunt
+ 
+run the cusromized container
+
+docker run --name c22 -it myubunt
+
+Docker file
+
+its text file use some predefined keywords
+keywords shoud uppercase
+
+keyword --> dockerfile --> customized image
+FROM
+MAINTAINER
+CMD
+ENTRYPOINT
+RUN
+USER
+WORKDIR
+COPY
+ADD
+ENV
+EXPOSE
+VOLUME
+LABEL
+STOPSIGNAL
+
+create docker file
+
+file name should be dockerfile
+
+-------------
+vim dockerfile
+ 
+FROM ingnix
+MAINTAINER yogesh
+
+:wq --> save and quit
+
+build an image from dockerfile 
+docker build -t mynginx .
+
+(t stands for tag name 
+. is an current working dir 
+mynginx is the name of new image )
+---------------
+
+vim dockerfile
+ 
+FROM centos
+MAINTAINER yogesh
+CMD ["date"]
+
+:wq --> save and quit
+
+docker build -t mycentos .
+
+ru  the container 
+docker run -it mycentos
+
+---------------
+vim dockerfile
+ 
+FROM centos
+MAINTAINER yogesh
+CMD ["date"]
+CMD ["ls","-la"]
+
+:wq --> save and quit
+
+docker build -t mycentos .
+
+run the container 
+docker run -it mycentos
+
+if we have multiples of commadn in docker file tha last command only executed
+
+---------------
+vim dockerfile
+ 
+FROM ubuntu
+MAINTAINER yogesh
+run apt-get ubuntu
+run apt-get install -y git 
+
+:wq --> save and quit
+
+docker build -t myubuntu .
+
+CMD --> when will run the container started 
+RUN --> when will execute the images created 
+
+docker run -it myubuntu
+git --version
+exit
+
+version controlling in docker file
+--------***********--------------
+mkdir docker
+mv dockerfile docker
+cd docker/
+vim dockerfile
+
+FROM ubuntu
+MAINTAINER yogesh
+run apt-get update
+run apt-get install -y git
+
+:wq
+
+git init
+git status
+git add .
+git commit -m "a"
+git config --global user.name "yogesh"
+git config --global user.email "yogeshacy@gmail.com"
+
+vim dockerfile
+
+FROM ubuntu
+MAINTAINER yogesh
+RUN apt-get update
+run apt-get install -y git
+run apt-get install -y default-jdk
+
+:wq
+
+git status
+git add .
+git commit -m "b"
+git log
+git log oneline
+git log --oneline
+git reset --hard bb70b5c
+cat dockerfile
+
+FROM ubuntu
+MAINTAINER yogesh
+run apt-get update
+run apt-get install -y git
+
+history
+
+------************0---------------
+
+Cache busting
+
+when image from docker file , read its memory and checks which instructions were already executed. these steps will not be reexecuted
+
+vim dockerfile
+
+FROM ubuntu
+MAINTAINER yogesh
+run apt-get update
+run apt-get install -y git
+run apt-get install -t tree
+
+:wq
+
+to avoiding the cache to update the old pakages aslo use to --> &&
+
+vim dockerfile
+
+FROM ubuntu
+MAINTAINER yogesh
+run apt-get update && apt-get install -y git tree --> bye ass the cach memory 
+
+:wq
+-------------------------
+
+every contaier with default processer
+
+os based default process is bash 
+
+docker rm -f $(docker ps -aq) --> remove all container 
+
+docker run --name j1 -d -P jenkins/jenkins-war
+
+docker exec -it j1 bash
+
+docker run --name t1 -d -P tomcat
+
+docker exec -it t1 bash
+
+
+change the default process of the container 
+
+vim dockerfile
+
+FROM ubuntu
+MAINTAINER yogesh
+
+RUN apt-get update
+RUN apt-get install -y default-jdk
+
+ADD http://mirrors.jenkins.io/war-stable/latest/jenkins.war  /
+ENTRYPOINT ["java","-jar","jenkins.war"]
+
+docker build -t myubuntu .
+
+docker image ls
+docker run myubuntu
+
+ctrl+c
+
+erntry point can change the default process
+
+
+registry
+
+it is called hub
+
+docker run --name  c5 -it  ubuntu
+
+apt-get update
+apt-get  install tree
+exit
+
+docker commit  c5  yogeshac/ubuntu_img005
+
+docker image ls
+
+docker login
+
+username
+password
+
+docker push yogeshac/ubuntu_img005
+
+login to docker hub to see your image
+
+
+container orchestration
+
+process of running docker container in distributed environment thats called orchestration
+
+
+orchestration rool is --> docker swarm
+
+Advantages
+
+load balancing 
+scaling of container
+perform the rolling up
+handling failur scenerios
+	
+mysql online --> paizocloud
+
+CMD 
+ENTRYPOINT
+-------------------------------------------------
+
+Docker Swarm
+
+create 3 node 
+manager 
+worker
+worker
+
+create 3 machine insatll docker 
+
+https://get.docker.com/
+
+curl -fsSL https://get.docker.com -o get-docker.sh
+sh get-docker.sh
+
+change the hostname all machine 
+
+vim /etc/hostname 
+
+Manager
+
+:wq
+
+init 6 ( restart the machine)
+
+docker swarm installed manager
+
+docker swarm init --adverdise-addr (private ip of manager )
+
+manager private ip 172.31.38.225
+
+docker swarm init --advertise-addr 172.31.38.225
+
+copy the join token 
+
+add the worker node 
+
+docker swarm join --token SWMTKN-1-22i7fpmnhkvy8z6yv8qkwr8waabrzmq16cero3bxermarejcbz-963brpuv4gp0xrom790sdgbms 172.31.38.225:2377
+
+login worker node 
+
+swarm join token command execute in worker node 
+
+
+
+docker swarm --> rnning continer in multile host machine
+
+docker network --> grouping of container in one networks
+
+manager node 
+
+docker node ls
+
+install tomcat in manager 
+
+docker service create --name webserver -p 9090:8080 --replicas 5 tomee
+
+create tomcat service of webserver with 5 repicas 
+
+
+docker service ps webserver
+docker container ls
+
+
+docker service create --name mydb --replicas 2 -e MYSQL_ROOT_PASSWORD=yogesh mysql:5
+docker service create --name mydb --replicas 3   -e MYSQL_ROOT_PASSWORD=sunil mysql:5
+
+docker servive ps mydb
+
+delete service 
+
+docker service ls
+docker service rm jdmlf78q9kpf
+
+
+delete container
+
+docker container ls
+
+docker rm -f <container id>
+
+---------------------------------- 
+scaling of contaier
+
+docker service --name appserver -p 8080:80 --replicas 5 nginx
+
+docker service ps appserver
+
+scaling up
+docker service scale appserver=10
+
+docker service ps appserver
+
+scaling down 
+docker service scale appserver=3
+
+docker service ps appserver
+
+Remove the node from docker swarm 
+
+two ways
+1. manager can drain
+2. node can leave
+
+1. manager can drain
+
+node remove 
+docker node update --availability drain worker1
+docker node ls
+
+node add
+docker node update --availability active worker1
+docker node ls
+
+2. node can leave
+connect node machine
+
+docker swarm leave
+
+we need to add again generate the node execute again
+
+list 
+docker services ls
+
+rolling update 
+
+with out down time update 
+
+docker service create --name myredis --replicas 6 redis:3
+
+docker service ps myredis
+
+rolling update the version
+
+docker service update --image redis:4 myredis
+
+
+docker service ps myredis | grep shutdown 
+
+docker service ps myredis | grep -v shutdown (-v is inverse operation)
+
+rollback to older version
+
+docker service update --rollback myredis
+
+add to new worker node
+docker swarm join-token worker 
+copy the tokcer execute the worker node 
+
+add to new worker manager
+docker swarm join-token manager
+
+copy the tokcer execute the manager
+
+to promete worker as a manager 
+
+docker node promote worker1
+
+demote the worker1 
+
+docker node demote worker1
+
+only one leader , if any manager down another one change the leader 
+
+--------------------------------
+docker network
+when docker install , docker network install default 
+dockerr zero network
+its start with 172.X.X.X
+
+docker run -d -P nginx
+
+ip a
+
+docker run -d -P redis
+
+docker run -d --name tester1 busybox:1.28 sleep 3600
+
+docker ps
+docker inspect <container-id>
+
+root@ip-172-31-12-229:~# docker ps
+CONTAINER ID   IMAGE          COMMAND                  CREATED              STATUS              PORTS                                         NAMES
+8646fc2ba578   busybox:1.28   "sleep 3600"             About a minute ago   Up About a minute                                                 tester1
+97631d475aa1   redis          "docker-entrypoint.s…"   3 minutes ago        Up 3 minutes        0.0.0.0:49154->6379/tcp, :::49154->6379/tcp   great_bardeen
+2c07dee0172d   nginx          "/docker-entrypoint.…"   5 minutes ago        Up 5 minutes        0.0.0.0:49153->80/tcp, :::49153->80/tcp       dazzling_carver
+root@ip-172-31-12-229:~#
+
+8646fc2ba578 --> busybox
+
+97631d475aa1 --> redis
+
+2c07dee0172d --> nginx
+
+ping with ontainer id
+
+docker exec 8646fc2ba578 ping 97631d475aa1 --> its not connected
+
+ping with ontainer name 
+
+docker exec 8646fc2ba578 ping great_bardeen  --> its not connected
+
+pine with ip 
+
+docker exec 8646fc2ba578 ping 172.17.0.2 --> connected 
+docker exec 8646fc2ba578 ping 172.17.0.3 --> connected 
+
+communication happed only ip 
+
+docker 0 network is default network
+when remove the container nerork also removed 
+
+custom networks
+
+docker network create yogesh
+docker inspect yogesh
+
+docker inspect c8c4eb243da8e384677af8d705e6bc0fea6c8f9ce2541d1ce21d0489bb61e044
+
+ {
+                    "Subnet": "172.18.0.0/16",
+                    "Gateway": "172.18.0.1"
+                }
+
+docker run -d -P --name app --net yogesh nginx 
+
+docker run -d --name mybox --net yogesh busybox:1.28 sleep 3600
+
+root@ip-172-31-12-229:~# docker ps
+CONTAINER ID   IMAGE          COMMAND                  CREATED              STATUS              PORTS                                         NAMES
+e495cd317575   busybox:1.28   "sleep 3600"             34 seconds ago       Up 33 seconds                                                     mybox
+747ea4e47b1e   nginx          "/docker-entrypoint.…"   About a minute ago   Up About a minute   0.0.0.0:49155->80/tcp, :::49155->80/tcp       app
+8646fc2ba578   busybox:1.28   "sleep 3600"             19 minutes ago       Up 19 minutes                                                     tester1
+97631d475aa1   redis          "docker-entrypoint.s…"   21 minutes ago       Up 21 minutes       0.0.0.0:49154->6379/tcp, :::49154->6379/tcp   great_bardeen
+2c07dee0172d   nginx          "/docker-entrypoint.…"   23 minutes ago       Up 23 minutes       0.0.0.0:49153->80/tcp, :::49153->80/tcp       dazzling_carver
+root@ip-172-31-12-229:~# docker exec e495cd317575 sh
+root@ip-172-31-12-229:~# docker exec -it e495cd317575 sh
+
+
+
+docker exec -it e495cd317575 sh
+
+ping 172.18.0.2
+ping 172.18.0.3
+
+one container part of two networks
+
+docker network connect yogesh 97631d475aa1
+
+docker inspect 97631d475aa1	
+
+docker network ls
+
+container network model
+defaul network is bridge
+bridge only communicate with in machine only
+
+host network
+
+
+root@ip-172-31-12-229:~# docker network ls
+NETWORK ID     NAME      DRIVER    SCOPE
+fd5876b82702   bridge    bridge    local
+53c4dcbaba05   host      host      local
+3251507e517c   none      null      local
+c8c4eb243da8   yogesh    bridge    local
+
+docker run -d -P --net host nginx 
+
+
+docker network create yogesh --driver overlay 
+
+Ansible
+
+Configuration management tools
+
+provisioning server -> required software install in certralized server
+idemotant --> desired state 
+
+can not install os 
+only install applicatiions
+Configuration management tools -->Ansible, chef, puppet,alt etc/hostname
+its open source 
+build in python
+controller install ansible
+ansbile controlled machine called managed nodes
+ansible is agent less policy for configures remote server 
+its possward less ssh
+
+
+steps
+
+create 4 machine
+
+connect server1 (3 server machine)
+
+sudo passwd ubuntu
+(assign the password --> ubuntu)
+sudo vim /etc/ssh/sshd_config
+change
+paasword auhentication yes
+sqve and quit 
+:wq
+
+sudo service ssh restart
+exit
+
+controller machine
+
+ssh-keygen
+
+copy the key to managed nodes
+
+ssh-copy-id <user>@<private-ip>
+
+ssh-copy-id ubuntu@172.31.4.12
+
+ssh-copy-id ubuntu@172.31.8.67
+
+ssh-copy-id ubuntu@172.31.6.181
+
+sudo apt-get install software-properties-common
+(  software-properties-common    ,  is a base package which is required to install ansible )
+
+sudo apt-add-repository ppa:ansible/ansible
+
+sudo apt-get update
+
+sudo apt-get install -y ansible
+
++++++++++++++++++
+To check ther version of ansible
+
+$ ansible --version
+
+
+cd /ect/ansible
+ls 
+host --> file is the inventory file
+
+cd /etc/ansible/
+sudo vim hosts
+
+add managed node private ip addresses
+
+:wq!
+
+list of all node free space 
+
+ansible all -a 'free'
+
+ansible all -a 'ls -la'
+
+
+performing configuration
+
+adhoc command 
+playbooks
+
+adhoc command modules 
+1.command
+2.shell
+3.ping
+4.user
+5.copy
+6.fetch
+7.file
+8.stat
+9.debug
+10.apt
+11.yum
+12.git
+...
+...
+20.setup
+
+ansible all -i /etc/ansible/hosts -m command -a 'free'
+
+all --> refers to  all nodes
+i --> refers to inventory file 
+-m --> refers to modules
+-a --> refers to command arguments
+
+ansible all -i /etc/ansible/hosts -m command -a 'touch file1'
+	
+	
+ssh <node-private-ip> (connect node machine)	
+
+
+#   $ curl -fsSL https://get.docker.com -o get-docker.sh
+#   $ sh get-docker.sh
+
+ansible all -i /etc/ansible/hosts -m shell -a 'curl -fsSL https://get.docker.com -o get-docker.sh'
+ansible all -i /etc/ansible/hosts -m shell -a 'sh get-docker.sh'
+
+
+create custom inventory
+vim myinventory
+172.31.4.12
+172.31.8.67
+
+:wq!
+
+ansible all -i myinventory -m command -a 'free'
+
+default inventory is host
+ansible all -m command -a 'free'
+
+ansible all -m shell -a 'las -la > file2'
+
+user modules
+
+sudo useradd yogesh
+vim /etc/passwd
+setpassword
+sudo passwd yogesh
+(password as yogesh)
+
+ansible all -m user -a 'name=yogesh password=yogesh'
+
+(permission denoed Error)
+
+ansible all -m user -a 'name=yogesh password=yogesh' -b
+
+-b --> (become, higher privilages on managed nodes)
+
+ansible all -m user -a 'name=kavin password=kavin uid=1234 comment ="Regular user" home=/home/ubuntu/kavin shell=/bin/bash' -b
+
+apt modules
+ansible all -m apt -a 'name= git state=present' -b 
+
+ansible all -m apt -a 'name= git state=absent' -b 
+
+absent --> uninstall git
+
+ansible all -m apt -a 'name= git state=present' -b 
+
+state=present  --> install
+state=absent   --> uninstall
+state=latest   --> upgrade
+
+ansible all -m apt -a 'name=tomcat8 state=present update_cche=yes' -b 
+
+file module
+
+ansible all -m file -a 'name=/tmp/file5 state=touch'
+
+ansible all -m file -a 'name=/tmp/dir1 state=directory'
+
+
+ansible all -m file -a 'name=/tmp/file5 state=absent'
+
+absent --> delete the file/dir
+
+
+ansible all -m file -a 'name=file1 state=touch'
+
+ansible all -m file -a 'name=file1 state=touch owner=kavin group=ubuntu mode=700' -b
+
+
+copy module 
+
+copy file from controller to managed node
+
+ansible all -m copy -a 'src=/etc/passwd dest=/tmp'
+
+fetchmodule
+(oposite of copy module)
+
+ansible all -m fetch 'src=/etc/tomcat8/server.xml dest=/tmp' -b
+
+Git module 
+perform the git operation
+
+ansible all -m git -a 'repo=<http://git-repo-path> dest=/tmp/git-file/' -b
+
+service module
+
+perform the service operation
+
+ansible all -m service -a 'name=tomcat8 state=restarted' -b
+
+state=restarted --> restart the service 
+state=stoped --> stop a running service 
+state=started --> starting the stoped service 
+
+replace module
+
+replace the content of file 
+
+ssh <private-ip>
+cd /etc/tomcat8/
+ls
+sudo vim server.xml
+view the connecter port number 
+
+ansible all -m replace -a 'regexp=8080 replace=9090 path=/etc/tomcat8/server.xml' -b
+
+ansible all -m service -a 'name=tomcat8 state=restarted' -b 
+
+URI Module
+
+specified URL reachable or not in managed node
+
+ansible all -m uri -a 'url=http://google.com'
+
+green color status 200
+
+if invalid url status -1 (not connected)
+
+Notes:
+Requirement.
+
+ I want to install tomcat all modules.Copy  tomcat-users.xml in all managed nodes.
+Change port number of tomcat from 8080 to 9090. Restart the tomcat8 service. 
+Finally i want to check url is reachable or not.
+
+$  ansible all -m  apt -a 'name=tomcat8 state=present' -b
+
+$  ansible all -m  copy  -a  'src=tomcat-users.xml  dest=/etc/tomcat8'  -b
+$ ansible all  -m replace  -a 'regexp=8080 replace=9090 path=/etc/tomcat8/server.xml'  -b 
+$  ansible all   -m service    -a 'name=tomcat8  state=restarted'  -b
+
+To check tomcat is running individually on all servers,
+take the private ip of all nodes
+172.31.11.96
+172.31.6.207
+172.31.12.138
+
+
+$ ansible all -m   uri  -a 'url=http://172.31.11.96:9090  status=200'
+It returns status as 200
+
+Similarly  check the other two nodes
+$ ansible all -m   uri  -a 'url=http://172.31.6.207:9090  status=200'
+$ ansible all -m   uri  -a 'url=http://172.31.12.138:9090  status=200'
+
+
+Playbook
+
+Its is combination of plays
+its reusability
+its crated YAML file
+
+mkdir playbooks
+cd playbooks
+vim playbook1.yml
+
+- name: Install git and clone a remote repository
+  hosts: all
+  tasks:
+    - name: Install git
+      apt:
+       name: git
+       state: present
+       update_cache: yes
+    - name: clone remote git repository
+      git:
+        repo: https://github.com/sunilkumark11/git-9am-batch.git
+        dest: /home/ubuntu/newgit  
+
+
+To check the syntax:
+$ ansible-playbook  playbook1.yml  --syntax-check
+
+( Do not use tab  when creating yml file )
+
+To run the playbook
+$ ansible-playbook  playbook1.yml  -b
+
+
+2nd example on playbook
+---------------------------
+Create user on all managed nodes and I want to copy passwd file.
+
+$ vim playbook2.yml
+
+---
+- name: Create user and copy passwd file
+  hosts: all
+  tasks:
+          - name: User creation
+            user:
+             name: kiran
+             password: sunilsunil
+             uid: 6779
+             home: /home/kiran
+          - name: Copy password into users home dir
+            copy:
+             src: /etc/passwd
+             dest: /home/kiran
+...
+
+Check the syntax:
+$ ansible-playbook  playbook2.yml  --syntax-check
+
+To run 
+$ ansible-playbook  playbook2.yml  -b
+
+Ex 3: Playbook to configure tomcat8   ( earlier  example )
+
+1st uninstall tomcat
+$ ansible  all  -m  apt -a 'name=tomcat8 state=absent  purge=yes'  -b
+
+$ vim playbook3.yml
+
+---
+- name: Configure  tomcat8
+  hosts: all
+  tasks:
+   - name: Install tomcat8
+     apt:
+      name: tomcat8
+      state: present
+   - name: copy tomcat-users.xml file
+     copy:
+      src:  /home/ubuntu/newfile1
+      dest: /etc/tomcat8
+   - name: change port of tomcat from 8080 to 9090
+     replace:
+      regexp: 8080
+      replace: 9090
+      path: /etc/tomcat8/server.xml
+   - name: restart tomcat8
+     service:
+      name: tomcat8
+      state: restarted
+   - name: check url response of server 1
+     uri:
+      url: http://172.31.7.225:9090
+   - name:   check url response of server 2
+     uri:
+      url: http://172.31.6.181:9090
+...
+
+
+$ ansible-playbook  playbook3.yml  --syntax-check
+
+$ ansible-playbook  playbook3.yml  -b
+
+Types of varaiable
+Global variable
+
+ansible-playbook  playbook3.yml --extra-var "a= b= c=" -b
+
+play scope variable
+
+
+host variable
+
+it's 2 types
+its work on group of host
+its work on single host
+
+grop of host
+mkdir group_vars
+vim webserver   (group of host name )
+
+
+single host
+mkdir host_vars 
+vim 172.31.32.85 (private ip of host)
+
+
+Implementing Loops
+
+item -- loops
+
+
+Handler
+
+notify used handler 
+
+Error handling
+
+
+Nagios
+
+it's monitoring tools
+
+CPU utilization,Ram utilization, network bandwith
+
+
+Kubernetes 
+
+its is continer orchestration tool
+
+Kubernets create cluser, deploy and manage clustur
+
+cluster --> combination  of master and nodes
+node also called as minion
+
+master contains of 4 components
+kbe-api server --> its 
+kube scheduler --> 
+controller manager 
+etcd
+
+container inside pod
+
+pod is automic unit of deployment in kubernetes
+pod contain one or more container
+pods running only nodes
+nodes are controlled by pods
+
+node
+kubelet --> eagent ---> lisitining to master 
+
+kube-proxy --> provide ip to pod
+container engine --> create container from docker
+
+pods
+
+kubectl run --image tomcat webserver
+kubectl get nodes
+kubectl get pods
+kubectl delete pods webserver
+
+kubectl run --image tomcat webserver
+kubectl get pods -o wide 
+
+4 levels of element
+1.apiversion ---> library 
+2.kind   ---> 
+3.metadata --> specifice informtion label ,name etc
+4.spec   ---> it deals container, name of container  and port details
+
+1.apiversion
+kind     api version
+pod        -----> v1
+services   -----> v1
+namespace  -----> v1
+secrects   -----> v1
+repicateset----->
+deployment ----->
+
+kubectl create -f deployment.yaml
+kubectl delete -f deployment.yaml
+kubectl delete -f deployment.yaml --> updated in yaml file
+	
+Replication controller 
+
+high level object
+scalling
+load balancing
+
+keys --> replicas , temlates,spec 
+
+repicaset
+
+Replication controller and repicaset both or smilar
+
+similar to repication conroller
+
+to specific selector filed
+
+matchlable --> standalone pod
+
+kubectl scale --replicas=2 -f replicas-set.yaml
+
+describe the pods 
+
+kubectl describe pods postgres-pod
+
+kubectl describe pods postgres-pod | less	
+
+deployment object
+loadbalancing
+scalling
+rolling update
+
+kubectl get all ( get all the object)
+
+kubectl get deployment
+
+rolling ubdated 
+
+Service object
+it perform network load balancing
+3 ports
+target port --> container port  --> actual port
+port --> service port 
+host port --> external port
+
+3 types
+cluster ip ---> communicate with in the cluster
+node port --> communicate with external , its network load balancinf
+load balancer 
+
+terraform -- IAC tools
+
+It is Infrastructure as code
+create hasicorp in 2014
+
+terraform init --> download the required provider information plugins
