@@ -1,0 +1,120 @@
+Ansible
+Advantages
+--------------
+configuration management tool
+open source 
+agentless less 
+use ssh for operation
+low requirement
+developed in python
+light weight and quick deployment
+use YAML syntax
+
+Terminology 
+---------------
+play books
+Task
+Tasks
+Action
+Facts
+Host
+Groups
+Handlers
+Ad-hoc
+Inventory
+Modules 
+Library
+Notify
+Orchestration
+Pushmode
+Pullmode
+Roles
+Templates
+When(Opetional)
+YAML
+
+inventory 
+ansible all
+
+cd /etc/ansible/
+host
+
+client-a.yoge.net ansible_user=yogesh //apart from from root user access
+[webserver]
+client-a.yoge.net
+client-a.yoge.net
+client-a.yoge.net
+client-a.yoge.net
+(or)
+client-[a-d].yoge.net
+
+[db server]  
+db1.yoge.net
+db2.yoge.net
+db3.yoge.net
+db4.yoge.net
+(or)
+db[1-4].yoge.net 
+
+ad-hoc command 
+ansible all //it will take all the list of server  host
+ansible all -m ping 
+ansible test -m ping //specific group
+ansible testing -m ping //group not present 
+ansible testing -s 
+adhoc execute the small task or command 
+playbook --> execute multiple task 
+
+ansible test -m shell -a "uptime"
+ansible -i /root/hostfile test -m shell -a "uptime"
+
+ad-hoc command
+perform simple task or execute the command 
+command hostgroupname module/arguments[optops]
+
+ansible all 
+ansible webserver ping (or) reboot
+ansible all -a uptime 
+ansible all -a "uname -a"
+ansible all all -m 
+ansible-doc -l  // list of module 
+ansible-doc -l | more | wc -1 // count the modules 
+ansible-doc -l | grep -i user
+ansible-doc user
+ansible all -m ping
+ansible all -m user -a "name= yoges password=yogesh"
+ansible all -m user -a "yum -y install httpd"
+ansible all -a "yum -y install httpd"
+ansible all -a "yum -y remove httpd
+ansible-doc yum
+ansible all -m yum -a "name=httpd state=present" //install 
+ansible all -m yum -a "name=httpd state=absent" //uninstall
+
+playbook
+way to do perform automation in client machine
+
+vi install.yml 
+--- (multiple proper document in one file )
+- hosts: webservers # as per inventory file 
+  tasks 
+  - name: Install httpd
+    yum: name=httpd state=latest
+  - name: restart services
+    service: name=httpd state:restart
+
+ansible-playbook install.yml --syntax-check
+ansible-playbook install.yml --list-hosts
+ansible-playbook -i /root/hostfile install.yml --syntax-check
+
+rpm -q httpd
+
+ansible-doc -l | more
+ansible-doc yum
+rpm -qa ansible    
+
+vi /etc/ansible/ansible.cfg (all configuration file)
+
+cat /etc/ansible/hosts
+
+ansible all -m shell -a uptime
+ansible all -m shell -a uptime -v 
