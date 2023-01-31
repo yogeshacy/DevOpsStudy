@@ -1,0 +1,153 @@
+prometheus developed by cloud native fundation
+Its monitoing tools
+to cofigure the tagets 
+tagets is the node , app, container kuber netes 
+time series monitoring tools 
+It contain alert manager
+AWS 
+1995- jeff bezos ( initail dvd, cd , ..)
+
+AWS launched 2006
+
+Its collection of remote computing services 
+ogether cloud computing 
+
+it's closed to 200 services 
+
+25 regions 
+
+offer ?
+availability --> easy to access to anywhere 
+scalability --> easy to increase the size ( scaling up and down)
+pay as you go --> 
+
+
+EC2-->Elastic compute cloud 
+
+instance --> launch instances -->  
+
+Webserver
+
+yum install httpd -y
+
+cd /var/www/html
+
+echo "" > index.html
+
+service httpd start
+
+chkcongif httpd on --> automatically started when the machine restarted 
+
+load balancer ( receive the traffic and distribute the traffic)
+ receive  the user traffic and distribute the server 
+ monitor the healt of the traffice 
+
+
+Bootstrap script
+
+#!/bin/bash
+sudo su 
+yum update -y
+yum install httpd -y
+cd /var/www/html 
+echo "Load balance server" > index.html
+service httpd start
+chkconfig httpd on
+
+
+LOAD Balancer 
+
+Application 
+Network
+Gateway
+classic
+
+response time --> waiting time 
+Interval --> health check time interval 
+unhealthy threshold --> number of attampts
+healthy treshold --> number of attampts
+
+Auto scaling
+1.load balancer 
+2.auto scalling configuration
+3.SNS 
+4.auto acaling server limit 
+5.cloud watch
+
+system status check --> related to h/w
+Instance status check --> related to o/s
+
+2/2 --> both checks are passed
+1/2 --> sys - passed, ins --> failed
+0/2 --> both checks failed 
+
+scaling up(RAM, CPU, HDD)
+increase the h/w verical scaling
+increase HDD no need to stop 
+RAM and CPU stop and increase 
+
+Horisondal scaling
+adding new no of increase
+root volume --> os old
+EBS volume --> seprate volume
+
+Storage - s3
+simplse storage sevice
+unlimited storage
+
+versioning
+maintain differnt version of object
+recover the delete object 
+static website hosting
+index document (index.html)
+error document (error.html)
+
+storage class
+default storage class 
+standard --> highspeed
+Intelligent Tiering
+Standard IA (infrequent access)
+one zone IA 
+
+cross region replication
+Transfer accelaration
+enscription
+lifecycle management
+
+-----------------------
+Load Balancer
+
+To aviod down time
+recive the trafic distribure the trafic to server
+montor the health 
+
+#!/bin/bash
+sudo su
+yum update -y
+yum install httpd -y
+cd /var/www/html
+echo "MyGoogle-2" > index.html
+service httpd start
+chkconfig httpd on
+
+Bootstrap script
+
+load balancer
+
+Response Timeout--> waiting time to get responce 
+Interval --> monitor the health time 
+Unhealthy threshold -->
+Healthy threshold --> 
+
+Auto scaling
+
+1.loadbalancer --> 
+2.Launch configuration --> confgure the instance 
+3.SNS --> notification message 
+   aaplication integration --> SNS 
+   create topic
+   add sebscription
+4.Auto scaling group --> min max instance config
+5.cloudwatch alaram
+mangement and governence--> cloud watch alaram
+6.auto scaling group attach the alram --> create policy
