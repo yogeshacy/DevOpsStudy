@@ -1,0 +1,208 @@
+Terraform
+
+infrastructure as code (IAC)
+developed by hasicorp in 2014
+
+IAC tools
+Terraform
+CloudFormation
+
+download terraform
+install atom 
+install the package language_terraform
+
+ 
+provider "aws"{
+ regin = "ap-south-1"
+ access_key  = ""
+ secrect_key = ""
+}
+
+resource "aws_instance" "Local_name"{
+ ami =""
+ instance_type ="t2.micro"
+}
+
+terraform init // download the provider plugin
+
+terraform plan // 
+
+terraform apply //
+
+//github repository
+
+terraform {
+	required_provider {
+		github = {
+			sourcer = "integration/github"
+			version = "4.23.0"
+		}
+	}
+}
+
+provider "gtihub" {
+	token = "git_hub  token"
+}
+
+resource "github_repository" "yogesh" {
+	name = " "
+	description = ""
+	visibility = "public"
+	
+	template {
+		owner = "github"
+		repository = "terraform-module-template"
+	}
+}
+github 
+setting --> developer setting -->  personal token --> generate token 
+
+terroform destroy // destroy all the the tf
+
+terroform destroy -target aws_instance.Local_name // destroy only specifiedd resource 
+/*
+
+*/
+terraform command line
+
+state file --> terraform track the information
+
+current state --> current running details 
+desired state --> terraform code
+
+terraform refresh 
+
++ add
+- remove
+~ modify
+
+-------------
+
+provider "aws"{
+ regin = "ap-south-1"
+ access_key  = ""
+ secrect_key = ""
+}
+
+resource "aws_eip" "myeip"{
+	vpc = true
+}
+
+output "eip" {
+	value =  aws_eip.myeip.public_ip
+}
+resource "aws_s3_bucket" "mys3"{
+	bucket = "yogoibucket-test"
+}
+
+output "mys3bucket" {
+	value = aws_s3_bucket.mys3.bucket_domain_name 
+}
+
+---------
+cross  resource attributes
+
+provider "aws"{
+ regin = "ap-south-1"
+ access_key  = ""
+ secrect_key = ""
+}
+
+resource "aws_instance" "my_ec2"{
+ ami ="<ami_no>"
+ instance_type ="3.micro"
+}
+
+resource "aws_eip" "myeip"{
+	vpc = true
+}
+
+resource "aws_eip_association" "eip_asso"{
+	instance_id =  aws_instance.my_ec2.id
+	association_id = aws_eip.myeip.id
+}
+
+terraform plan
+terraform apply
+terraform destroy
+
+-------
+security group
+
+provider "aws"{
+ regin = "ap-south-1"
+ access_key  = ""
+ secrect_key = ""
+}
+
+resource "aws_eip" "myeip"{
+	vpc = true
+}
+
+resource "aws_security_group" "mysg"{
+	name = "mysecuritygroup"
+}
+
+ingress {
+	from = 443
+	to = 443
+	protocal = TCP
+	//cidr_blocks = [65.0.23.104/32]
+	cidr_blocks = ["${aws_eip.myeip.public_ip}/32"]
+
+}
+
+egress { 
+	from = 443
+	to = 443
+	protocal = TCP
+	//cidr_blocks = [65.0.23.104/32]
+	cidr_blocks = ["${aws_eip.myeip.public_ip}/32"]
+}
+
+ingress --> inbound rule
+egress --> outbound rule
+
+variables
+
+varargs.tf 
+variable "va" {
+  default = "65.0.23.104/32"
+}
+
+mysecurity.tf
+
+provider "aws"{
+ regin = "ap-south-1"
+ access_key  = ""
+ secrect_key = ""
+}
+
+resource "aws_security_group" "mysg"{
+	name = "mysecuritygroup"
+}
+
+ingress {
+	from = 80
+	to = 80
+	protocal = TCP
+	cidr_blocks = [var.va]
+}
+
+ingress {
+	from = 443
+	to = 443
+	protocal = TCP
+	cidr_blocks = [var.va]
+}
+
+ingress {
+	from = 53
+	to = 53
+	protocal = TCP
+	cidr_blocks = [var.va]
+}
+
+terraform init
+terraform plan
+terraform apply

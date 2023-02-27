@@ -1,0 +1,261 @@
+helm chat 
+its packagemanager in k8s
+ 
+helm install 
+gofish
+snap
+Binary
+script
+
+helm structure 
+
+chart.yaml
+templates
+values.yaml
+
+helm create demochart
+
+setup kubernetes cluster
+deployment.yml
+service.yml
+service-account.yml
+
+
+setup kubernetes cluster
+create helm chat
+fill in the values.yml
+run -S helm install
+
+--
+helm create springboot
+tree springboot/
+cd springboot
+vi chart.yaml 
+
+apiVersion
+name 
+version
+
+values.yaml
+
+vi template/deployment.yml
+
+cd ..
+helm template springboot //view all service yml
+helm lint springboot/ // if any issue or mistake in syntax
+helm install springboot  --debug --dry-run springboot
+helm install myfirstringnboot springboot
+helm list -a
+kubectl get all
+
+helm upgrade myfirstringnboot springboot
+helm rolback myfirstringnboot springboot 1
+helm delete myfirstringnboot
+
+----
+
+downlod hem install shell script
+chmod 7000 get_helm.sh
+shget_helm.sh
+helm 
+helm version
+---
+helm create helloworld
+tree helloworld
+cd helloworld
+
+values.yaml
+clustor ip to node port
+helm install release_chatname actual_chart name 
+helm install myhelloworld helloworld
+helm list -a 
+kubeclt get service 
+---
+upstream repository
+
+help repo list
+
+add the bitnami repo in helm
+
+helm repo add bitnami <bitnami-url>
+
+helm search repo bitnami
+
+helm repo  update  
+
+help repo index helloworld
+
+tree helloworld
+
+cat helloworld/insex.yml
+
+helm repo remove bitnami
+-----
+helm plugin
+hem diff revision myhelloworld 1 2 
+
+helm plugin list
+ 
+helm plugin install <plugin-url>
+
+helm create myhelloworld helloword
+
+helm list -a 
+
+helm upgrade myhelloword .
+
+helm list -a
+
+helm diff revision myhelloword 1 2
+------
+
+helm search hub wordpress
+
+helm search hub wordpress --max-col-width=0
+
+helm repo add bitnami <url>
+helm search repo wordpress --versions
+helm show readme bitnami/wordpress --version 10.0.3 //read me file
+helm show values bitnami/wordpress --version 10.0.3 // credential and other details
+
+create name space
+kubectl create namespace nswordpress
+kubectl get namespace
+
+helm instrall wordpress bitnamoi/wordpress --value=wordpress-value.yaml --namespace nswordpress --version 10.0.3
+
+watch -x kubectl get all --namespace nswordpress
+
+kubernetes to helm
+ 
+helm list -a // 
+hwlm delete myhelloworld
+
+Helm Linting
+hem templeting 
+
+helm dry run for debugging helm chart
+
+when we used to dry run command its communicate actua l kubernetes api server 
+
+dry-run --> kubernetes api server --> yaml
+
+when we used template validate and verify the helm chart yaml 
+
+template --> helm chart
+
+helm install helloword
+
+tree helloworls
+helm list -a
+helm install myhwlloworld --debug --dry-run helloword  
+  
+
+helm install myhwlloworld helloword  
+
+pass environment variable helm chart
+helm install --set repicalCount=2 myhelloword helloworld
+helm install --set repicalCount=2 --set repicalCount=3 myhelloword helloworld
+
+vi myvalues.yml
+replicaCount: 2
+
+helm install -f myvalues.yml myhelloworld helloworld
+helm delete myhelloworld
+
+vi env-values.yml
+examplemap:
+  - name: "USERNAME"
+    value: "test1"
+  - name: "PASSWORD"
+    value: "test2"
+
+deployment.yml 
+
+upgrade helm chart
+
+helm create helloworld 
+ls
+tree helloword
+helm install myhelloworld helloworld
+helm list -a
+
+helm upgrade myhelloworld helloworld
+helm list -a
+
+rollback helm
+
+helm rollback myhelloworld 1
+ 
+delete helm    
+
+helm delete myhelloworld
+
+helm install helloworld --name myhelloworld
+ 
+helmfile //install helm chart
+
+release: 
+ -name: helloworld
+ chart: ./helloworld
+ installed: true
+
+helm sync
+
+helmfile //uninstall helm chart
+
+release: 
+ -name: helloworld
+ chart: ./helloworld
+ installed: false
+ 
+helm sync  
+
+helmfile //uninstall helm chart
+
+repositories:
+ - name:helloworld
+   url: git+https://github.com/yogeshac/helmchart@helloworld?ref=master&sparse=0
+   
+release: 
+ - name: helloworld
+   chart: ./helloworld
+   installed: true
+
+helmfile sync
+
+install helm git plugin
+
+Kubernetes - K8S -> developed by Google 
+kuberents creates cluster deploy manage applicatgion 
+clustert set of nodes (it contain master and worker)
+
+Kubernets feature 
+
+orchestration
+autocaling
+auto healing 
+load balancing
+rollback
+
+master 
+
+kube-api server  <-- yaml file 
+kube scheduler --> create container details 
+controller manager --> state of clustor (actual state /desired state)
+etct --> clustor store , contains the clustor details 
+
+Worker/node
+kubelet --> its also called agent, communicate with master 
+kube-proxy --> provide the ip address to pod 
+container engine ->  create the container 
+
+
+
+pods --> containers
+
+pod --> it contains container 
+pod is automic unit of deployment in kubernetes
+
+pods running in master 
+
