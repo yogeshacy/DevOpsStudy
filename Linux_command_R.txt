@@ -1,0 +1,760 @@
+waterfall vs scrumfall
+Roles of Devops 
+ensure the code lower to higher environment without any issues
+there is no downtime
+List of Tools
+
+Roles of Devops
+Ensure the relase the s/w smoothly
+Ensure availabuility in 99% of running application
+UNIX -->
+
+GNU(s/w ??? h/w) --> not an unix
+
+Linus Torvalds (GNU/Linux)
+
+command 
+uname -a 
+ls
+ls -d /boot
+cat /etc/*release
+cat /proc/cpuinfo
+cat /proc/meminfo
+fdisk or lsblk //disk information
+uname -i // processer information
+
+ls -A
+Ls -l
+touch sample note.txt lambda.py
+
+rm sample
+rm -f lambda.py //f --> forcefully removed 
+cp notes.txt pages.txt
+mv pages.txt page.txt
+
+Root directory (/)
+pwd --> present working directory
+cd /bin --> navicate to directory
+cd --> move to root directory 
+cd - --> previous working directory 
+cd -- --> previous of 2nd directory 
+cd .. --> immediate move to parent directory 
+. --> represent current working directory 
+
+mkdir /demo/new/yogesh  ## following dir not present directory not created 
+madir -p /demo/new/yogesh ## if it id not prsent created
+mkdir demo1 demo2 demo3 ## multiples of directory create single shot
+
+cp -r demo1 demo2 
+
+cp SOURCE TARGET
+
+mv SOURCE TARGET 
+rmdir demo ## remove empty directory
+rmdir --rf  demo/new/yogesh
+
+file concatenate
+cat /etc/passwd
+tac /etc/passwd
+head -n 5 /etc/passwd
+tail -n 5 /etc/passwd
+
+grep root /etc/passwd
+grep bash /etc/passwd
+
+awk -F : '{print $1}' /etc/passwd  ## column based trim 
+awk -F : '{print $1, $2}' /etc/passwd
+
+Regular Expression
+
+Editors
+vi, vim
+vim 
+1.ESC mode
+2.colon mode
+3.insert mode
+
+ESC mode 
+copy (yy) /nyy
+paste (p)
+delete or cut (dd)/ ndd
+undo (u)
+
+colon mode
+:/<search-word>
+
+search and replace 
+:%s/root/admin/
+:%s/root/admin/g --> g --> global access the line
+:%s/ROOT/admin/gi --> possible to case sensitive also
+
+sed -e 's/root/ROOT/' password 
+sed -e 's/root/ROOT/g' password
+sed -e 's/root/ROOT/2' password
+
+Insert Mode
+press --> i 
+:w --> save 
+:q --> quit
+:q! --> without save and quit
+:wq --> save and quit 
+
+find / -name passwd 
+find /etc -name passwd 
+curl <url> -o save_filename
+curl -O <url>
+
+tar -xf http.tar.gz
+unzip file1.zip
+curl -L -o shopping.zip <url> /// -L --> redirect to appropriate page 
+
+pipes (|)
+cat /etc/passwd | grep root 
+echo sample.txt | rm -r  --> its not working 
+echo sample.txt | xargs rm -f --> xargs user to bridge of some pipe command 
+
+Administration 
+uname -a 
+cat /etc/*release
+ssh root@192.168.2.10
+
+Process Management
+
+ps --> current user process only showing
+pa -u --> all users process visible 
+
+ps -ef --> detailed information about process 
+ps -ef | grep ssh
+sleep 10 // stop the procees some time
+ps -ef | grep sleep
+
+kill -9 <PID>
+
+user management
+
+groupadd devops
+
+cat /etc/group
+useradd -g devops yogesh
+
+id yogesh
+groupadd admins
+usermod -a -G admins yogesh
+passwd yogesh
+
+ps -ef | grep httpd
+ps -ef | grep tomcat 
+su - yogesh
+
+sudoers
+sudo useradd yogesh //normal user can't admin operation 
+cd /etc/sudoers.d/
+vim yogesh
+yogesh ALL=ALL 
+
+Package Managemenet
+RPM -->
+yum --> yellowDog updated modifier
+sudo yum list installed // view the list of package installed 
+sudo yum list installed | wc -l
+sudo yum list available | wc -l
+sudo yum list all
+sudo yum list | grep httpd
+sudo yum install nginx
+sudo yum install nginx -y 
+sudo yum remove nginx -y
+sudo yum update nginx -y
+cd /etc/yum.repos.d/
+sudo yum list | grep jenkins
+
+service management
+sudo systemctl list-util -t service 
+
+
+sudo systemctl enable httpd //its used to start the service automatically
+sudo systemctl status httpd
+sudo systemctl start httpd
+sudo systemctl restart httpd
+sudo systemctl disable httpd
+sudo reboot
+
+cat /etc/systemd/system/multi-user.target.wants/nginx.sevcie
+type npm // display service whwew will come
+sudo systemctl daemon-reload
+
+permission management
+sudo chown root hello.txt
+sudo chgrp root hello.txt
+sudo chown centos:bin hello.txt
+
+owner(u) r
+group(g) w
+others(o) x
+
+rwx rwx rwx
+owner group others 
+
+chmod ugo+rwx sample.txt
+chmod ugo-rwx sample.txt
+
+ip a // find ip address
+netstat lntp
+telnet
+
+netstat -tlnp
+telnet <ip-address> <port> 
+
+AWS ISP POOL --> NAT --> AWS SG (Firewall) --> PORT (0-65533)
+
+website
+webapplication
+webserver 
+application server
+database
+
+http status code
+1xx --> internal
+2xx --> success resbonds 
+3xx --> redirectional
+4xx --> client error
+5xx --> server error 
+
+monolith
+microservices
+
+less downtime
+horizondal scaling	
+help to agile
+
+3 tire architecture
+web server 
+frontend
+app server
+micro services 
+DB server
+
+AWS Spot Instance
+sport inatance -->
+reserved instance --> operand instance 
+on demamnd instance --> when ever need get the instance 
+
+
+nano
+micro
+small
+medium
+large
+xlarger
+2xlarge
+
+set-hoatname f ront end
+
+hostingar
+dns checker
+
+
+---------
+hostinger
+
+ELK
+ES-9200
+K -5601
+LS-
+-----------
+shell script
+Automation
+->application
+	python
+	java
+	golang
+->OS
+	shell scripting
+
+shell is default in OS
+minimal containeer 
+shell is native in OS
+
+code standard
+
+never hardcode username and password
+code dry --> dont repeat the same steps
+automation shold never fail
+
+VCS (version control system)
+SVN --> 2000
+git --> 2005 --> linux kernal
+git clone <git-repository url>
+git pull <git-repository url>
+git add all 
+git add filename
+git commit -m 'message'
+git push 
+
+Agile 
+product team --> requirement 
+busines mode -B2B, B2C
+
+B2B --> Business to Business
+B2C --> Business to customer
+
+Jira
+
+sheBand & comments
+redirectors, Quots
+print
+variables
+inputs
+function
+exit
+conditions 
+loops 
+SED Dritors
+
+shell file extention .sh or .bash
+
+execute script 
+
+type bash 
+which bash
+
+unzip /tmp/catalogue.zip
+
+unzip -o /tmp/catalogue.zip //over ridethe existing file
+
+set -e -->  if any error in script script stopped
+
+Redirectors
+
+> output
+< input
+>> update the content in file 
+grep -ef ps | grep i int
+
+1> --> stdout 
+2> --> stderror
+&> --> both outpur and error (1> and 2>)
+&>/dev/null --> error of null output
+
+print message
+
+-e --> used to print the multinline 
+
+\e --> enable color line
+\n --> print new line
+\t --> tab
+
+#new line 
+echo -e "Hello\nWorld"
+
+#tab line
+echo -e "one\t\two"
+
+ echo -e "\e[31mHello\e[0m" 
+echo -e "\e[32mHello\e[0m" 
+echo -e "\e[33mHello\e[0m" 
+echo -e "\e[34mHello\e[0m" 
+echo -e "\e[35mHello\e[0m" 
+echo -e "\e[36mHello\e[0m" 
+
+
+\e[31m --> enable the color 
+\e[0m --> reset the color
+
+##code ##COLOR  
+31       RED
+32       GREEN
+33       YELLOW
+34       BLUE
+35       MAGENT
+36       CYAN
+
+singel Quote --> dose not contain spleciao char
+echo ** 
+echo '**'
+echo "**"
+
+a=01
+
+echo $a --> 10
+echo '$a' --> $a
+echo "$a" --> 10
+
+variables
+VAR = DATA
+$VAR or $(VAR)
+
+echo ${a} --> 10
+echo $aapple --> aapple
+echo ${a}apple --> 10apple
+
+echo value of a = $a
+
+date=2023-03-19 //can hard code 
+                //value get dynamically
+echo Today date is $data
+
+date +%F
+date =$(date +%F)
+echo Today date is $data
+
+Arithmatic Expression
+
+b$((4+5*2))
+echo value of b  = $a
+
+varable containd a-z, A-Z, 0-9
+special character not allowed
+variable should not start number
+variable not have datatype
+everything as a string
+ 
+variable defined as CAPS or camelcase
+
+READ WRITE Variable 
+a=10
+echo $a
+a=20
+echo $a
+
+Scalar variable
+b=10
+echo $b --> 10
+b=(10,20,30)
+echo $b --> 10
+echo ${b[0]} -->10
+echo ${b[1]} -->20
+echo ${b[2]} -->30
+
+Local variable 
+Environment
+
+cd /proc/ --> all the process some reprecent
+ 
+bash-shell PID
+
+Local variable 
+environment variable
+
+c=100
+export c --> covert into environment variable
+ 
+named array
+
+d=([c]=10 [d]=20)
+echo ${d[c]} -->10
+echo ${d[d]} -->20
+
+declare -A myarray
+myarray = ([a]=10 [b]=20)
+echo ${myarray[a]}
+
+sudo grep temp /var/log/mysqld.log
+
+sudo grep 'A temporary password' /var/log/mysqld.log
+
+sudo grep 'A temporary password' /var/log/mysqld.log | awk '{print $NF}'
+
+export MYSQL_PASSWORD=mysql@12345
+
+sudo -E bash mysql.sh
+
+echo $? --> print the execute status special variable
+$? --> its helpful to see the exit status 
+exit status range 0-255
+0 --> unoiversal success
+1-255 is not sucessfull/partial success
+
+
+if conditions
+
+*****simple if
+if [expression]
+then
+  commands
+fi
+
+*****if else 
+if [expression]
+then
+ commands
+else
+ commands
+fi
+
+****else if 
+
+if [expression]
+then
+ commands
+elif [expression2]
+then
+ commands
+elif [expression3]
+then
+ commands
+else
+ commands
+fi
+
+string comparision
+
+operators--> = , == , !=, -z
+
+[ "abc" == "ABC" ]
+
+-z --> emptuy variable
+[-z "$ USER] 
+
+Number comparision
+
+operatpors ==> -eq, -ne, -gt, -ge, -lt, -le
+
+file comparision
+
+operators --> -f
+
+[ -f file ]
+
+upper to lower conversion
+
+echo ABC | tr [:upper:][:lower:]
+
+ym exit code status
+
+exit --> break the execute the function and exit the function
+
+logical AND and OR
+
+command1 && command2
+command1 || command2
+
+function --> code shuld dry
+
+variable with function
+
+SED (Strean Line Editor)
+
+
+delete the words
+sed '/root/ d' /tmp/passwd
+
+sed -i '/root/ d' /tmp/passwd 
+sed -i -e '/root/ d' -e '/nologin/ d' /tmp/passwd  // multile values deleted
+sed -i -e '1 d' /tmp/passwd // 1 st line delted 
+
+subsuite the words 
+
+sed -e 's/root/ROOT' /tmp/passwd
+
+sed -i -e 's/root/ROOT' /tmp/passwd 
+
+sed -i -e 's/root/ROOT/gi' /tmp/passwd 
+
+Add new line 
+
+sed '1 i Hello' /tmp/passwd
+sed '/root/ i Hello' /tmp/passwd --> before root insert
+sed '/root/ a Hello' /tmp/passwd --> after root insert
+sed '/root/ c Hello' /tmp/passwd --> root line change the Hello
+
+
+----------------
+
+multi Environment 
+
+dev
+qa
+stage
+uat
+cit
+pre-prod
+nonprod
+prod/live
+perf
+dr
+sabdbox
+
+Inputs
+
+06-input.sh 
+
+read -p 'Enter your name' name 
+echo Your Name = $name
+
+
+07-input.sh 
+
+echo First arguments = $1
+
+echo Second arguments = $2
+
+echo All arguments = $* //all arguments
+
+echo Number arguments = $# //number of arguments
+
+SAMPLE(){
+echo First arguments function = $1
+echo Second arguments  function = $2
+echo All arguments function = $* //all arguments
+echo Number arguments function = $# //number of arguments
+}
+
+SAMPLE 100 200
+
+08-case.sh
+case $1 in
+ apple)
+  echo 'Price = $1'
+  ;;
+ banana)
+  echo 'Price = $.2'
+ *)
+  echo 'Item not found'
+  ;;
+esac
+
+loops
+for & while 
+
+09-loop.sh
+
+for fruit in apple banana; do
+	echo Fruit Name = $fruit
+done
+
+i=0
+while [ $i -gt 10 ]; do
+	echo I = $i
+	i = $(($i+1))
+done
+
+ 
+07-input.sh Yogesh 
+
+07-input.sh Yogesh devops
+
+if [ $# -lt 2 ]; then
+	echo Input missing
+	exit 1
+fi
+
+----
+Imperative / declarative
+
+shell declarative --> requesting 
+declarative - it take almost
+
+Homogeneous / hetrogeneous
+
+shell Homogeneous
+sequential operation /parallel operation
+scriprt has to be local on server 
+
+configuration management tool
+Ansible
+declarative
+hetrogeneous
+parallel operration
+code not in local 
+
+Ansible
+written by python
+developed by Michael Dehaan in 2013
+latrrer joined redhat
+communirty server
+Pull/push
+
+aws cli 
+aws configure
+
+aws ec2-describe-instance --instance-ids i-06232fasca1232
+create.sh
+
+Configuration management tools
+
+Inventory file
+
+add ip address or hostname
+grouping also possible [grouop1]
+
+Ansible versions
+
+Ansible v1
+ansible v2 --> v2 doesnot support v1
+ansible v2.0
+ansible v2.5
+till 2.9 collections as module 
+ansible v2.10 --> collection
+
+pypi.org --> ansible download here
+
+ansible(RedHat)3 --> Ansible core 2.10
+ansible(RedHat)4 --> Ansible core 2.11
+ansible(RedHat)5 --> Ansible core 2.12
+ansible(RedHat)6 --> Ansible core 2.13
+
+cat /etc/*.release // os version 
+uname -a //core version
+
+yum install ansinble -y --> ansible 9 version 
+sudo pip3 install ansible  --> 
+sudo yum install python3-pip -y
+sudo pip3 install pip --upgrade -y
+sudo pip3 install ansible -y
+sudo pip3 install ansible-core
+ansible --version	
+
+sudo labauto
+sudo labauto ansible
+
+vi inventry
+
+ansible -i inventry	all --list-hosts
+
+ansible -i inventry	G2 --list-hosts
+
+ansible collection
+
+ansible -i inventry	all -u centos -k -m ansible.build.ping
+
+XML 
+<!--<TAG>INPUT</TAG> -->
+JSON
+YAML -Yet Another Markup Language
+
+sudo labauto ansible
+
+ansible -i ip1, ip2 all --list-hostingar
+ansible-pull -i localhost, -U <git-url>
+
+Roles
+
+- name 
+  host: all
+  task:
+   ansible.build.ping
+   msg: {{ $URL  }}
+   
+ansible-playbook  -i inventry -e ansible_user=centos  -e ansible_password=DevOps321 varible.yml
+
+
+Runtime variable 
+
+Prometheus
+
+Monitoring 
+TSDB 
+pull based metrics
+metrics are vector(2 dimansional)
+
+journald
+journalctl --> view all logs 
+
+rsyslog 
+
+cat /etc/rsyslog.conf
+
+cat /var/log/messages | gerp 'cart'
+
+cat /etc/systemd/system/cart.service
+	
