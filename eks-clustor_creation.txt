@@ -1,0 +1,41 @@
+Crate IAM Role 
+
+IAM --> roles --> create role --> select aws service(Trusted entity type) and ec2(Use case) --> choose the below Permissions policies --> role name --> create 
+AmazonEC2FullAccess
+IAMFullAccess
+AdministratorAccess
+AmazonVPCFullAccess
+AWSCloudFormationFullAccess
+
+Attached the above IMA role EC2-Machine
+
+seclect instance --> action --> security --> modify IAM role --> select the created 
+
+sudo yum update
+ 
+-----------------------
+Kubeclt - installation
+-----------------------
+ curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.19.6/2021-01-05/bin/linux/amd64/kubectl
+ chmod +x ./kubectl
+ sudo mv ./kubectl /usr/local/bin
+ kubectl version --short
+ 
+------------------------
+awscli installation
+------------------------
+ curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+ unzip awscliv2.zip
+ sudo ./aws/install
+ aws --version
+-----------------------
+EKS installation 
+-----------------------
+ curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+ sudo mv /tmp/eksctl /usr/local/bin
+ eksctl version
+-----------------------
+Clustor Creatiion
+-----------------------
+ eksctl create cluster --name eks-clustors --region us-east-1 --node-type t2.medium --zones us-east-1a,us-east-1b
+ kubectl get nodes
