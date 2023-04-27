@@ -1,0 +1,73 @@
+    1  sudo yum update
+    2  sudo yum install java-1.8.0-openjdk-devel
+    7  java -version
+    8  javac
+    9  sudo useradd -m -U -d /opt/tomcat -s /bin/false tomcat
+   12  sudo wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.73/bin/apache-tomcat-9.0.73.tar.gz
+   14  sudo tar xzvf apache-tomcat-9*tar.gz -C /opt/tomcat --strip-components=1
+   16  sudo chown -R tomcat:tomcat /opt/tomcat
+   17  sudo sh -c 'chmod +x /opt/tomcat/bin/*.sh'
+   19  readlink -f $(which java) (java path )
+   21  sudo vi /etc/systemd/system/tomcat.service
+           [Unit]
+           Description=Apache Tomcat Web Application Container
+           After=network.target
+           
+           [Service]
+           Type=oneshot
+           RemainAfterExit=yes
+           
+           User=tomcat
+           Group=tomcat
+           
+           Environment="JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.312.b07-1.el7_9.x86_64/"
+           Environment="JAVA_OPTS=-Djava.security.egd=file:///dev/urandom -Djava.awt.headless=true"
+           Environment="CATALINA_BASE=/opt/tomcat"
+           Environment="CATALINA_HOME=/opt/tomcat"
+           Environment="CATALINA_PID=/opt/tomcat/temp/tomcat.pid"
+           Environment="CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC"
+           ExecStart=/opt/tomcat/bin/startup.sh
+           ExecStop=/opt/tomcat/bin/shutdown.sh
+           
+           [Install]
+           WantedBy=multi-user.target
+   22  sudo systemctl daemon-reload
+   23  sudo systemctl start tomcat
+   24  sudo systemctl status tomcat
+   26  sudo systemctl enable tomcat
+   27  cd /opt/tomcat/webapps/manager/META-INF/
+   29  vi context.xml
+       <Context antiResourceLocking="false" privileged="true" >
+         <Valve className="org.apache.catalina.valves.RemoteAddrValve"
+         allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" /> // replace 
+         <Manager sessionAttributeValueClassNameFilter="java\.lang\.(?:Boolean|Integer|Long|Number|String)|org\.apache\.catalina\.filters\.CsrfPreventionFilter\$LruCache(?:\$1)?|java\.util\.(?:Linked)?HashMap"/>
+       </Context>
+	   
+	   <Context antiResourceLocking="false" privileged="true" >
+         <Valve className="org.apache.catalina.valves.RemoteAddrValve"
+         allow=".*" />
+         <Manager sessionAttributeValueClassNameFilter="java\.lang\.(?:Boolean|Integer|Long|Number|String)|org\.apache\.catalina\.filters\.CsrfPreventionFilter\$LruCache(?:\$1)?|java\.util\.(?:Linked)?HashMap"/>
+       </Context>
+   30  cd /opt/tomcat/
+   32  cd conf/
+   34  vim tomcat-users.xml
+       <role rolename="admin-gui"/>
+       <role rolename="admin-script"/>
+       <role rolename="manager-gui"/>
+       <role rolename="manager-status"/>
+       <role rolename="manager-script"/>
+       <role rolename="manager-jmx"/>
+       <user name="admin" password="admin" roles="admin-gui,admin-script,manager-gui,manager-status,manager-script,manager-jmx"/>
+       <user name="tomcat" password="tomcat" roles="admin-gui,admin-script,manager-gui,manager-status,manager-script,manager-jmx"/>
+   35  sudo systemctl restart tomcat
+   66  sudo yum install maven
+   67  mvn -version
+   68  mkdir mavenproject
+   72  mvn archetype:generate -DarchetypeArtifactId=maven-archetype-webapp -DgroupId=in.yogi -DartifactId=HelloWorld -DinteractiveMode=false
+   90  cd HelloWorld
+   91  mvn clean package
+   92  cp -r /root/mavenproject/HelloWorld/target/HelloWorld.war /opt/tomcat/webapps/
+   93  ll /opt/tomcat/webapps/
+   94  vi /opt/tomcat/webapps/HelloWorld/index.jsp
+   95  history
+
