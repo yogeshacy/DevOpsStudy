@@ -1,0 +1,605 @@
+shebang
+#!/bin/bash
+# --> sharp
+! --> bang
+
+sharp+bang = shebang
+
+variables
+
+variable.sh
+
+#!/bin/bash
+
+# variables
+
+VAR=hello
+echo $VAR
+
+#String
+
+STR = "Hello yogesh"
+
+echo ${STR} // Hello yogesh 
+
+#manuplate the string replace 
+echo ${STR/yogesh/yoge} // Hello yoge
+
+#manuplate the string slice
+echo ${STR::5}    // Hello
+echo ${STR:7:10}  // yoge
+
+Array
+
+indexes 0   1   2   3   4   5   6
+ARRAY=(sun mon tue wed thu fri sat)
+
+${ARRAY[0]} --> sun
+
+${ARRAY[@]} --> all item of array
+
+${ARRAY[*]} --> all item of array
+
+${!ARRAY[@]} --> all item of indexes
+
+Arithmatic Calculation
+
+CAL=$((7+10))
+echo $CAL
+
+expr 7 + 10
+
+CAL1=`expr 7 \* 10`
+echo $CAL1
+
+echo "7 + 10" | bc
+
+CAL2=`echo "7 + 10" | bc`
+echo $CAL2
+
+io redirection (>) (>>)
+stdin(0)  --> input
+stout(1)  --> output
+sterr(2)  --> error
+
+(>) --> outputfile
+(>>) --> outputfile appended
+
+lsd 2> error.log
+
+lsd &> error.log (both output and error)
+
+piping (|) --> xargs
+
+cat name.txt | wc -l
+cat name.txt | grep yogesh
+cat name.txt | xargs mkdir
+cat name.txt | xargs rmdir
+
+arguments --> while execute the script pass the arguments
+
+#!/bin/bash
+
+#first argumment
+echo $1
+#second argumment
+echo $2
+#all argumment
+echo $?
+#all argumment
+echo $*
+
+Exit status
+0 --> success
+1 --> common error
+
+echo $?
+
+CAL=$((1/0))
+echo $? --> 1
+
+fun() {}
+echo $? --> 2
+
+/dev/null -- blackhhole file 
+echo $? --> 126
+
+lsn 
+echo $? --> 127
+
+if-else 
+
+if [condition]
+then
+	command..
+else
+	command..
+fi
+
+== or -eq --> equal
+!= or -ne --> not equal
+-lt -->
+-gt -->
+-ge -->
+-le -->
+[[=~]] --> regex matching
+
+
+#!/ban/bash
+
+if [ 1 == 1 ]
+then
+	echo "Both are equal"
+else
+	echo "Both are not equal"
+fi
+
+#!/ban/bash
+
+VAR1=1
+if [ $VAR1 == 1 ]
+then
+	echo "Both are equal"
+else
+	echo "Both are not equal"
+fi
+
+#!/ban/bash
+
+if [ $1 -eq 1 ]
+then
+	echo "Both are equal"
+else
+	echo "Both are not equal"
+fi
+
+#!/ban/bash
+
+STR1="hello World"
+STR2="hello World"
+if [ "$STR1" == "$STR2" ]
+then
+	echo "Both are equal"
+else
+	echo "Both are not equal"
+fi
+
+[-e file] --> file exists (check the file )
+[-r file] --> readable
+[-h file] --> symlink
+[-d file] --> directory exists
+[-w file] --> writeable
+[-s file] --> file size > 0 byte
+[-f file] --> file exists
+
+#!/ban/bash
+
+FILE=array.sh
+
+if [ -e $FILE ]
+then
+	echo " $FILE file is present"
+else
+	echo "file is not present"
+fi
+
+
+symlink 
+
+ln -s /home/array.sh array.sh
+
+#!/ban/bash
+
+FILE=array.sh
+
+if [ -h $FILE ]
+then
+	echo " $FILE file is present"
+else
+	echo "file is not present"
+fi
+
+#!/ban/bash
+
+FILE=array.sh
+
+if [ -r $FILE ]
+then
+	echo " $FILE file is present"
+else
+	echo "file is not present"
+fi
+
+while loop
+
+while [condition ]
+do
+	statement
+done
+
+
+#!/ban/bash
+
+NUM = 1
+while [ $NUM -lt 10 ]
+do
+	echo $NUM
+	let $NUM++
+done
+
+#!/ban/bash
+
+NUM = 1
+cat name.txt
+
+while read line 
+do
+	echo $NUM.$line
+	let $NUM++
+done
+
+infinite loop 
+
+#!/ban/bash
+
+NUM = 1
+
+while true 
+do
+	echo $NUM
+	let $NUM++
+done
+
+#!/ban/bash
+
+NUM = 1
+
+while : 
+do
+	echo $NUM
+	let $NUM++
+done
+
+for loop
+
+for arg in [ contition ]
+do 
+  statement
+done
+
+
+#!/ban/bash
+
+for i in 1 2 3 4 5 6 7 
+do
+	echo $i
+done
+
+
+#!/ban/bash
+
+for i in `cat name.txt`
+do
+	echo $i
+done
+
+
+#!/ban/bash
+
+ARR = ( SUN MON TUE WED THU FRI SAT )
+for i ${ARR[@]}
+do
+	echo $i
+done
+
+#!/ban/bash
+
+NUM = 1
+
+for ((;;))
+do
+	echo $NUM
+	let NUM++
+done
+
+case Statement
+
+case "$variable" in 
+	"condition")
+	   statement 
+	"condition")
+       statement
+esac
+
+
+#!/ban/bash
+
+case "$VAR" in
+	"condition")
+		statement
+	;;
+	"condition")
+		statement
+	;;
+esac
+
+#!/ban/bash
+echp "Enter Name:"
+read NAME
+case $NAME in
+	"root" )
+		echo "You have access"
+	;;
+	"yogesh" )
+		echo "You don't have access"
+	;;
+	* )
+		echo "You don't have access"
+esac
+
+function
+
+fun () {
+	statement
+}
+
+#!/bin/bash
+
+fun () {
+	echo "function statement..."
+}
+
+fun
+fun
+
+#!/bin/bash
+
+function fun () {
+	echo "function statement..."
+}
+
+fun
+fun
+
+color bash 
+
+color starting from 30 
+
+background color starting from 40
+
+echo -e 
+
+echo "\e[30m Bash Scripting\e[0m"
+
+echo "\e[1;30m Bash Scripting\e[0m"
+
+echo $RANDOM
+
+echo $((RANDOM%5))
+echo $((RANDOM%500))
+
+
+Projects 
+
+#!/ban/bash
+
+read randam Line 
+
+ARRAY=(
+"I am yogesh woking in software"
+"second line"
+"Third line"
+"Fourth line"
+"Fifth line"
+)
+
+
+echo ${ARRAY}
+echo ${ARRAY[2]}
+echo ${ARRAY[$RANDAM%5]}
+
+echo -e "\e[31m${ARRAY[$RANDAM%5]\e[0m"}
+
+password generator
+
+#!/bin/bash
+
+#PASS=`data | sha256sum | cut -b 1-5`
+PASS=`data | sha256sum | cut -b 1-$1`
+
+echo "Your password is $PASS"
+
+Digital clock
+date +%H:%M:%S
+
+#!/bin/bash
+
+while true
+do
+	clear
+	date +%H:%M:%S
+	sleep 1
+done
+
+remove unnecessary files
+
+#!/bin/bash
+
+yum update -y
+yum upgrade -y
+yum remove -y 
+
+#!/ban/bash
+
+if [ $UID -eq 0 ]
+then
+	echo "access available "
+else
+	echo "access not available"
+fi
+
+packages install 
+
+#!/ban/bash
+
+RED="\e[31m"
+GREEN="\e[32m"
+EXIT="\e[0m"
+if [ $UID -ne 0 ]
+then
+	echo "Error"
+	exit 1
+fi
+
+PACKAGES=( figlet sl net-tools )
+
+for i in ${PACKAGES[@]}
+do
+	echo -e "${RED}[+] Installing $i ...${EXIT}"
+	yum install $1 -y &>/dev/null
+	echo -e "${GREEN}[+] Install $i ...${EXIT}"
+done
+
+file conversion
+
+#!/ban/bash
+
+if [ $# -eq 0 ]
+then
+	echo "Usage: $0 [File-1][File-2]...[File-n]"
+	exit
+fi
+
+for i in $@
+do 
+	if [ -f $i]
+	then
+		file_name = `echo $1 | sed "s/[.].*//"`
+		covert $i $file_name.png
+	else
+		echo "Error: $i is not a regular file.."
+	fi
+done
+
+echo "[+] File conversion complsted .."
+
+file informantion
+
+
+#!/ban/bash
+
+if [ $# -eq 0 ]
+then
+	echo "Usage: $0 [File] "
+	exit 1
+fi
+
+OWNER=`ls -la $1 | awk '{print $3}'`
+SIZE=`ls -la $1 | awk '{print $5}'`
+MONTH=`ls -la $1 | awk '{print $6 " " $7}'`
+TIME=`ls -la $1 | awk '{print $8}'`
+
+echo "File Name:$1"
+echo "Owner: $OWNER"
+echo "Size: $SIZE"
+echo "Created on $MONTH at $TIME"
+echo "File Type: `file $1`"
+echo "Permission"
+if [-r $1]
+then
+	echo "READABLE = TRUE"
+else
+	echo "READABLE = FALSE"
+fi
+
+if [-w $1]
+then
+	echo "WRITABLE = TRUE"
+else
+	echo "WRITABLE = FALSE"
+fi
+if [-x $1]
+then
+	echo "EXECUTABLE = TRUE"
+else
+	echo "EXECUTABLE = FALSE"
+fi
+
+
+#!/bin/bash
+
+read -p "[+] Enter your name:" NAME
+read -p "[+] Enter your id:" ID
+read -p "[+] Enter your department:" DEPARTMENT
+read -p "[+] Enter your gender:" GENDER
+
+INFO=$NAME,$ID,$DEPARTMENT,$GENDER
+
+read -p "[+] If above info Correct [y/n] :" INPUT
+
+case "$INPUT" in
+	n | N )
+	exit
+	;;
+	y | Y )
+	echo $INFO >> employee.csv
+	;;
+	* )
+	exit
+	;;
+esac
+
+echo "Data has been storted"
+
+server utilization
+
+#!/bin/bash
+
+RED="\e[1;31m"
+GREEN="\e[1;32m"
+EXIT="\e[0m"
+
+divider () {
+	echo -e "{RED}---------------------------${EXIT}"
+}
+
+clear
+
+echo -e "       ${GREEN}**************************${EXIT}"	
+echo -e "       ${GREEN}****SERVER UTILIZATION****${EXIT}"
+echo -e "       ${GREEN}**************************${EXIT}"
+echo
+divider
+echo -e "Todays Date is : `date`"
+echo
+divider
+echo
+echo "Uptime: `uptime`"
+echo
+divider
+echo
+echo -e "Currently logged on user"
+w
+echo
+divider
+echo
+echo -e "Last login"
+last -a | head -n 3
+echo
+divider
+echo
+echo -e "DISK and memory usages"
+echo
+df -h | xargs |  awk '{print "Free/Total disk:" $11 "/" $9 }'
+echo
+free -m | xargs | awk '{print "Free/total memory" $17 "/" $8 "MB" }'
+echo
+divider
+echo
+echo -e "Utilation of process"
+echo
+top -b | head -n 3 
+echo
+top -b | head -n 10 | tail -4
+
+patten
